@@ -31,13 +31,6 @@ export function LayoutAutenticacao({ titulo, subtitulo, children, rodape }: Prop
         </Link>
 
         <div className="relative my-auto max-w-md">
-          <img
-            src={marca.logo}
-            alt=""
-            aria-hidden
-            className="mb-8 h-40 w-40 rounded-[23%] object-cover shadow-2xl shadow-black/50"
-            onError={(evento) => evento.currentTarget.remove()}
-          />
           <h2 className="text-3xl leading-tight font-semibold tracking-tight">
             Seu dinheiro organizado com sete vidas de precisão.
           </h2>
