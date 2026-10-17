@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
 import { AvisoArmazenamento } from '@/componentes/layout/AvisoArmazenamento'
+import { ErroRota } from '@/componentes/layout/ErroRota'
 import { LayoutAplicacao } from '@/componentes/layout/LayoutAplicacao'
 import { RotaProtegida, RotaVisitante } from '@/componentes/layout/RotaProtegida'
 import { CarregandoTela } from '@/componentes/ui/Diversos'
@@ -29,6 +30,7 @@ function Raiz() {
 const roteador = createBrowserRouter([
   {
     element: <Raiz />,
+    errorElement: <ErroRota />,
     children: [
       {
         element: <RotaVisitante />,

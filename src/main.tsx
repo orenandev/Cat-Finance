@@ -6,11 +6,14 @@ import { ProvedorConfirmacao } from './contextos/ConfirmacaoContexto'
 import { ProvedorNotificacoes } from './contextos/NotificacoesContexto'
 import { ProvedorSessao } from './contextos/SessaoContexto'
 import { ProvedorTema } from './contextos/TemaContexto'
+import { monitorarNovasVersoes } from './lib/atualizacaoVersao'
 import { clienteConsultas } from './lib/clienteConsultas'
 import './index.css'
 
 const raiz = document.getElementById('root')
 if (!raiz) throw new Error('Elemento #root não encontrado')
+
+monitorarNovasVersoes()
 
 createRoot(raiz).render(
   <StrictMode>
