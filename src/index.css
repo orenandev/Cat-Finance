@@ -1,0 +1,172 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/inter';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --fundo: #f3f4f2;
+  --lateral: #f7f8f6;
+  --superficie: #ffffff;
+  --superficie-2: #f6f7f5;
+  --superficie-3: #ecefea;
+  --borda: #e3e6e0;
+  --borda-forte: #cdd2c9;
+  --texto: #131512;
+  --texto-suave: #5a6158;
+  --texto-fraco: #8b9288;
+  --primaria: #131512;
+  --primaria-forte: #2a2e28;
+  --primaria-contraste: #ffffff;
+  --primaria-suave: #edf7e6;
+  --primaria-texto: #2f7d32;
+  --marca: #3f9b3a;
+  --marca-viva: #7cc04f;
+  --receita: #0f9f6e;
+  --receita-suave: #e5f7ef;
+  --despesa: #e23b3b;
+  --despesa-suave: #fdecec;
+  --alerta: #d98a0b;
+  --alerta-suave: #fdf3e0;
+  --sombra: 0 1px 2px rgb(16 24 40 / 0.04), 0 1px 3px rgb(16 24 40 / 0.06);
+  --sombra-flutuante: 0 12px 32px -8px rgb(16 24 40 / 0.18), 0 2px 6px rgb(16 24 40 / 0.06);
+  color-scheme: light;
+}
+
+.dark {
+  --fundo: #0d0f0d;
+  --lateral: #111311;
+  --superficie: #161916;
+  --superficie-2: #1b1f1b;
+  --superficie-3: #232823;
+  --borda: #262b26;
+  --borda-forte: #363c35;
+  --texto: #eef1ec;
+  --texto-suave: #a5ada2;
+  --texto-fraco: #6f776d;
+  --primaria: #eef1ec;
+  --primaria-forte: #d6dbd3;
+  --primaria-contraste: #0d0f0d;
+  --primaria-suave: #18261a;
+  --primaria-texto: #8fd46a;
+  --marca: #6cbf4a;
+  --marca-viva: #8fd46a;
+  --receita: #34d399;
+  --receita-suave: #10291f;
+  --despesa: #f87171;
+  --despesa-suave: #2d1517;
+  --alerta: #fbbf24;
+  --alerta-suave: #2b2210;
+  --sombra: 0 1px 2px rgb(0 0 0 / 0.3);
+  --sombra-flutuante: 0 16px 40px -8px rgb(0 0 0 / 0.6), 0 2px 6px rgb(0 0 0 / 0.3);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --color-fundo: var(--fundo);
+  --color-lateral: var(--lateral);
+  --color-superficie: var(--superficie);
+  --color-superficie-2: var(--superficie-2);
+  --color-superficie-3: var(--superficie-3);
+  --color-borda: var(--borda);
+  --color-borda-forte: var(--borda-forte);
+  --color-texto: var(--texto);
+  --color-texto-suave: var(--texto-suave);
+  --color-texto-fraco: var(--texto-fraco);
+  --color-primaria: var(--primaria);
+  --color-primaria-forte: var(--primaria-forte);
+  --color-primaria-suave: var(--primaria-suave);
+  --color-primaria-texto: var(--primaria-texto);
+  --color-primaria-contraste: var(--primaria-contraste);
+  --color-marca: var(--marca);
+  --color-marca-viva: var(--marca-viva);
+  --color-receita: var(--receita);
+  --color-receita-suave: var(--receita-suave);
+  --color-despesa: var(--despesa);
+  --color-despesa-suave: var(--despesa-suave);
+  --color-alerta: var(--alerta);
+  --color-alerta-suave: var(--alerta-suave);
+  --shadow-cartao: var(--sombra);
+  --shadow-flutuante: var(--sombra-flutuante);
+  --animate-surgir: surgir 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-deslizar: deslizar 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-brilho: brilho 1.4s ease-in-out infinite;
+}
+
+@keyframes surgir {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes deslizar {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes brilho {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-fundo text-texto font-sans antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--marca) 30%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--marca);
+    outline-offset: 2px;
+  }
+
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--borda-forte) transparent;
+  }
+}
+
+@layer components {
+  .numero {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+}
