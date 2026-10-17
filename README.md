@@ -2,6 +2,8 @@
 
 Controle financeiro pessoal, de empresas e trabalhos em um só lugar: visão consolidada, folha de pagamento, custos fixos, recorrências automáticas e API para bots.
 
+Produção: https://catfinancer.vercel.app
+
 ## Stack
 
 - React 19 + Vite + TypeScript, Tailwind CSS 4, TanStack Query, Recharts
@@ -33,22 +35,17 @@ Todas as tabelas têm RLS habilitado. Cada registro carrega `dono_id` e as chave
 
 ## Configuração do Supabase (painel)
 
-1. **Authentication → URL Configuration**
-   - Site URL: `https://SEU-DOMINIO.vercel.app`
-   - Redirect URLs: `http://localhost:5173/auth/retorno` e `https://SEU-DOMINIO.vercel.app/auth/retorno`
-2. **Authentication → Email Templates**: em *Confirm signup* e *Reset password*, cole o conteúdo de `supabase/templates/codigo-confirmacao.html` e `supabase/templates/codigo-recuperacao.html`. Eles usam `{{ .Token }}` para enviar o código de 6 dígitos.
-3. **Authentication → Providers**
-   - Google: crie credenciais OAuth no Google Cloud com o callback `https://tvgxhqkkvnebpiishfkv.supabase.co/auth/v1/callback`.
-   - Discord: crie um app no Discord Developer Portal com o mesmo callback.
-4. **Authentication → Settings**: habilite *Manual linking* (vincular Google/Discord à conta existente), senha mínima de 8 caracteres com letras maiúsculas, minúsculas e números.
-5. **Authentication → SMTP**: configure um SMTP próprio (Resend, SES, Postmark…). O SMTP padrão do Supabase só envia para membros da organização e tem limite baixo por hora.
-6. **Edge Functions → Secrets** (opcional): `ORIGENS_PERMITIDAS=https://SEU-DOMINIO.vercel.app` restringe o CORS da função `excluir-conta`.
+O login é feito apenas com e-mail e senha, sem confirmação por e-mail.
+
+1. **Authentication → Sign In / Providers → Email**: desligue **Confirm email** para a conta ser liberada assim que é criada.
+2. **Authentication → URL Configuration**: Site URL `https://catfinancer.vercel.app`.
+3. **Edge Functions → Secrets** (opcional): `ORIGENS_PERMITIDAS=https://catfinancer.vercel.app` restringe o CORS da função `excluir-conta`.
 
 ## Deploy na Vercel
 
 1. Importe o repositório na Vercel (o `vercel.json` já define build, rewrites de SPA e cabeçalhos de segurança).
 2. Em *Environment Variables*, adicione `VITE_SUPABASE_URL` e `VITE_SUPABASE_PUBLISHABLE_KEY`.
-3. Depois do primeiro deploy, atualize o Site URL e os Redirect URLs no Supabase com o domínio final.
+3. Sempre que mudar as variáveis, faça um *Redeploy* para que o build as inclua.
 
 ## API para bots
 

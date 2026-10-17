@@ -1,12 +1,10 @@
 import { ArrowRight, Mail } from 'lucide-react'
 import { type FormEvent, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { BotoesProvedores, Divisor } from '@/componentes/autenticacao/BotoesProvedores'
 import { CampoSenha } from '@/componentes/autenticacao/CampoSenha'
 import { LayoutAutenticacao } from '@/componentes/autenticacao/LayoutAutenticacao'
 import { Botao } from '@/componentes/ui/Botao'
 import { Campo } from '@/componentes/ui/Campo'
-import { guardarEmailPendente } from '@/lib/armazenamentoSessao'
 import { mensagemErro } from '@/lib/erros'
 import { supabase } from '@/lib/supabase'
 import { type ErrosFormulario, esquemaEntrar, validarFormulario } from '@/validacao/esquemas'
@@ -38,14 +36,8 @@ export default function Entrar() {
       password: validacao.dados.senha,
     })
 
+    setEnviando(false)
     if (error) {
-      setEnviando(false)
-      if (/email not confirmed/i.test(error.message)) {
-        guardarEmailPendente(validacao.dados.email)
-        await supabase.auth.resend({ type: 'signup', email: validacao.dados.email })
-        navegar('/verificar-email', { state: { email: validacao.dados.email } })
-        return
-      }
       setErroGeral(mensagemErro(error))
       return
     }
@@ -66,9 +58,6 @@ export default function Entrar() {
         </>
       }
     >
-      <BotoesProvedores />
-      <Divisor texto="ou entre com e-mail" />
-
       <form onSubmit={enviar} noValidate className="flex flex-col gap-4">
         <Campo
           rotulo="E-mail"
@@ -88,11 +77,6 @@ export default function Entrar() {
           value={senha}
           onChange={(evento) => setSenha(evento.target.value)}
           erro={erros.senha}
-          acessorio={
-            <Link to="/recuperar-senha" className="text-xs font-medium text-primaria-texto hover:underline">
-              Esqueci a senha
-            </Link>
-          }
         />
 
         {erroGeral && (

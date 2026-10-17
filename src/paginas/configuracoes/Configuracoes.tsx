@@ -6,7 +6,6 @@ import { usePerfil } from '@/consultas/perfil'
 import { type PreferenciaTema, useTema } from '@/contextos/TemaContexto'
 import { cx } from '@/lib/classes'
 import { SecaoCategorias } from './SecaoCategorias'
-import { SecaoContas } from './SecaoContas'
 import { SecaoPerfil } from './SecaoPerfil'
 import { SecaoPrivacidade } from './SecaoPrivacidade'
 import { SecaoSeguranca } from './SecaoSeguranca'
@@ -48,10 +47,9 @@ export default function Configuracoes() {
 
   return (
     <>
-      <CabecalhoPagina titulo="Configurações" descricao="Perfil, contas conectadas, segurança e privacidade." />
+      <CabecalhoPagina titulo="Configurações" descricao="Perfil, aparência, segurança e privacidade." />
       <div className="flex flex-col gap-4">
         {isPending || !perfil ? <Esqueleto className="h-72 rounded-2xl" /> : <SecaoPerfil key={perfil.id} perfil={perfil} />}
-        <SecaoContas />
         <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_280px]">
           <SecaoCategorias />
           <SecaoAparencia />

@@ -1,14 +1,11 @@
 import { ArrowRight, Mail, User } from 'lucide-react'
 import { type FormEvent, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { BotoesProvedores, Divisor } from '@/componentes/autenticacao/BotoesProvedores'
 import { CampoSenha } from '@/componentes/autenticacao/CampoSenha'
 import { LayoutAutenticacao } from '@/componentes/autenticacao/LayoutAutenticacao'
 import { Botao } from '@/componentes/ui/Botao'
 import { Campo } from '@/componentes/ui/Campo'
-import { urlRetorno } from '@/lib/autenticacao'
 import { cx } from '@/lib/classes'
-import { guardarEmailPendente } from '@/lib/armazenamentoSessao'
 import { mensagemErro } from '@/lib/erros'
 import { supabase } from '@/lib/supabase'
 import { type ErrosFormulario, esquemaCadastro, validarFormulario } from '@/validacao/esquemas'
@@ -40,7 +37,6 @@ export default function CriarConta() {
       email,
       password: senha,
       options: {
-        emailRedirectTo: urlRetorno(),
         data: { nome, full_name: nome, termos_aceitos: true },
       },
     })
@@ -56,8 +52,11 @@ export default function CriarConta() {
       return
     }
 
-    guardarEmailPendente(email)
-    navegar('/verificar-email', { state: { email } })
+    setErroGeral(
+      data.user?.identities?.length === 0
+        ? 'Este e-mail já possui uma conta. Tente entrar.'
+        : 'Conta criada, mas não foi possível entrar automaticamente. Tente entrar com seu e-mail e senha.',
+    )
   }
 
   return (
@@ -73,9 +72,6 @@ export default function CriarConta() {
         </>
       }
     >
-      <BotoesProvedores />
-      <Divisor texto="ou cadastre com e-mail" />
-
       <form onSubmit={enviar} noValidate className="flex flex-col gap-4">
         <Campo
           rotulo="Nome"

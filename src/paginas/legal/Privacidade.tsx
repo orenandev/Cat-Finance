@@ -27,8 +27,7 @@ export default function Privacidade() {
           conteudo: (
             <ul>
               <li>
-                <strong>Cadastro:</strong> nome, e-mail, senha (armazenada apenas como hash criptográfico) e, se você
-                escolher entrar com Google ou Discord, o identificador da conta, nome e foto pública desses serviços.
+                <strong>Cadastro:</strong> nome, e-mail e senha (armazenada apenas como hash criptográfico).
               </li>
               <li>
                 <strong>Dados financeiros que você informa:</strong> lançamentos, categorias, empresas, recorrências,
@@ -62,10 +61,6 @@ export default function Privacidade() {
                 <strong>Cumprir obrigações legais</strong>, como guarda de registros de acesso — obrigação legal (art. 7º,
                 II).
               </li>
-              <li>
-                <strong>Comunicações essenciais</strong>, como códigos de verificação e avisos de segurança — execução de
-                contrato.
-              </li>
             </ul>
           ),
         },
@@ -81,9 +76,6 @@ export default function Privacidade() {
                 </li>
                 <li>
                   <strong>Vercel</strong> — hospedagem da aplicação web.
-                </li>
-                <li>
-                  <strong>Google e Discord</strong> — somente se você optar por entrar ou vincular essas contas.
                 </li>
               </ul>
               <p>
@@ -101,7 +93,7 @@ export default function Privacidade() {
               <li>Isolamento por conta com Row Level Security: cada registro só pode ser lido pelo próprio dono.</li>
               <li>Tráfego sempre criptografado (HTTPS/TLS) e cabeçalhos de segurança rígidos no navegador.</li>
               <li>Chaves de API guardadas apenas como hash SHA-256, com escopos, expiração e revogação imediata.</li>
-              <li>Limites de requisição, confirmação de e-mail por código e senhas com requisitos mínimos.</li>
+              <li>Limites de requisição e senhas com requisitos mínimos de segurança.</li>
             </ul>
           ),
         },
@@ -132,7 +124,7 @@ export default function Privacidade() {
                 <li>
                   eliminar seus dados — disponível em <strong>Configurações › Excluir conta</strong>;
                 </li>
-                <li>revogar consentimentos e desvincular contas do Google ou Discord;</li>
+                <li>revogar consentimentos dados anteriormente;</li>
                 <li>peticionar à Autoridade Nacional de Proteção de Dados (ANPD).</li>
               </ul>
             </>

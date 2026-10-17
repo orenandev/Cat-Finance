@@ -7,9 +7,6 @@ import { CarregandoTela } from '@/componentes/ui/Diversos'
 
 const Entrar = lazy(() => import('@/paginas/autenticacao/Entrar'))
 const CriarConta = lazy(() => import('@/paginas/autenticacao/CriarConta'))
-const VerificarEmail = lazy(() => import('@/paginas/autenticacao/VerificarEmail'))
-const RecuperarSenha = lazy(() => import('@/paginas/autenticacao/RecuperarSenha'))
-const Retorno = lazy(() => import('@/paginas/autenticacao/Retorno'))
 const VisaoGeral = lazy(() => import('@/paginas/VisaoGeral'))
 const Pessoal = lazy(() => import('@/paginas/Pessoal'))
 const PaginaEmpresa = lazy(() => import('@/paginas/empresa/PaginaEmpresa'))
@@ -38,11 +35,8 @@ const roteador = createBrowserRouter([
         children: [
           { path: '/entrar', element: <Entrar /> },
           { path: '/criar-conta', element: <CriarConta /> },
-          { path: '/verificar-email', element: <VerificarEmail /> },
         ],
       },
-      { path: '/recuperar-senha', element: <RecuperarSenha /> },
-      { path: '/auth/retorno', element: <Retorno /> },
       { path: '/privacidade', element: <Privacidade /> },
       { path: '/termos', element: <Termos /> },
       {
